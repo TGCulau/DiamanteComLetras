@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            Cabecalho();
             Console.Write("Digite uma letra para gerar o diamante: ");
             char letradomeio = Convert.ToChar(Console.ReadLine());
             char start = 'A';
@@ -20,17 +21,29 @@
 
             }
 
-            ImprimirMeio(letradomeio, bkpmeio);
-
-            int aux2 = 1;
+            int aux2 = 1, aux3 = 0;
             bkpmeio--;
-            for (int i = bkpmeio; i >= 0; i--)
+            aux = aux - 2;
+            for (int i = bkpmeio; i > 0; i--)
             {
+                aux3++;
                 aux = aux - 2;
-                ImprimirBaixo(Convert.ToChar(letradomeio - aux2), aux, aux2, bkpmeio);
+                ImprimirBaixo(Convert.ToChar(letradomeio - aux3), aux2, aux, i);
                 aux2++;
             }
             Console.ReadLine();
+        }
+        static void Cabecalho()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Clear();
+            Console.WriteLine("######################################################################################");
+            Console.WriteLine("###                                                                                ###");
+            Console.WriteLine("###                          Academia do programador 2024                          ###");
+            Console.WriteLine("###                                                                                ###");
+            Console.WriteLine("###                               Diamante de Letras                               ###");
+            Console.WriteLine("###                                                                                ###");
+            Console.WriteLine("######################################################################################\n\n");
         }
         static void ImprimirCima(char letra, int espacos, int i, int aux)
         {
@@ -54,22 +67,16 @@
                 Console.WriteLine(letra);
             }
         }
-        private static void ImprimirMeio(char letradomeio, int bkpmeio)
+        static void ImprimirBaixo(char letra, int espacos, int aux, int i)
         {
-            Console.WriteLine(letradomeio);
-            Console.Write(new string(' ', bkpmeio));
-            Console.WriteLine(letradomeio);
-        }
-        static void ImprimirBaixo(char letra, int espacos, int aux, int bkpmeio)
-        {
-            if(aux < bkpmeio)
+            if(i > 1)
             {
                 Console.Write(new string(' ', espacos));
                 Console.Write(letra);
                 Console.Write(new string(' ', aux));
                 Console.WriteLine(letra);
             }
-            if (aux == bkpmeio)
+            else if (i == 1)
             {
                 Console.Write(new string(' ', espacos));
                 Console.Write(letra);
